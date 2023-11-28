@@ -1,13 +1,13 @@
 <div class="flex justify-center my-16" id="app">
   <div class="flex-col justify-center items-center w-[50%]">
 
-  <h1 class="text-center font-bold text-blue-600 my-4 md:text-4xl sm:text-3xl lg:text-5xl text-2xl">Find Repositories</h1>
+  <h1 class="text-center font-semibold font-serif my-4 md:text-4xl sm:text-3xl lg:text-5xl text-2xl">Find Repositories</h1>
   <div *ngIf="showSearch">
       <div class="text-center">
-          <h2 class="text-center text-[20px] font-bold">Search by typing Github Username:</h2>
+          <h2 class="text-center font-serif text-[20px] font-bold">Search by typing Github Username:</h2>
           <div class="my-4 grid place-content-center flex-col text-center">
             <input type="text" id="githubUsername" [(ngModel)]="githubUsername" class="p-1 mb-3 rounded-md border-black border-solid border-2">
-            <button class="bg-blue-400 text-white py-2 px-3 rounded-lg" (click)="search()">Search</button>
+            <button class="bg-green-300 hover:bg-blue-400 text-white py-2 font-serif px-3 rounded-lg" (click)="search()">Search</button>
           </div>
           
       </div>
@@ -35,7 +35,7 @@
           <div class="text-center">
               <input type="number" id="rep" class="text-center text-black p-2 border-solid border-2 my-2" max="100" min="1" [(ngModel)]="per_page" placeholder={{per_page}}>
           </div>
-          <button class="px-2 py-1 bg-blue-600 text-white text-center rounded-lg" (click)="change_per_page()">Change</button>
+          <button class="px-2 py-1 bg-blue-400 hover:bg-green-300  text-white text-center rounded-lg" (click)="change_per_page()">Change</button>
       </div>
       
       

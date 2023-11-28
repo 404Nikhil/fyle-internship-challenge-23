@@ -1,14 +1,13 @@
 <div class="flex justify-center my-16" id="app">
   <div class="flex-col justify-center items-center w-[50%]">
 
-  <h1 class="text-center font-bold text-blue-600 my-4 md:text-4xl sm:text-3xl lg:text-5xl text-2xl">Find Github Repositories</h1>
+  <h1 class="text-center font-bold text-blue-600 my-4 md:text-4xl sm:text-3xl lg:text-5xl text-2xl">Find Repositories</h1>
   <div *ngIf="showSearch">
       <div class="text-center">
-          <h2 class="text-center text-[20px] font-bold">Search for GitHub Repositories</h2>
-          <div class="my-4 text-center">
-            <label for="githubUsername">GitHub Username: </label>
-            <input type="text" id="githubUsername" [(ngModel)]="githubUsername" class="p-1 rounded-md border-black border-solid border-2">
-            <button class="bg-blue-400 mx-2 text-white py-2 px-3 rounded-lg" (click)="search()">Search</button>
+          <h2 class="text-center text-[20px] font-bold">Search by typing Github Username:</h2>
+          <div class="my-4 grid place-content-center flex-col text-center">
+            <input type="text" id="githubUsername" [(ngModel)]="githubUsername" class="p-1 mb-3 rounded-md border-black border-solid border-2">
+            <button class="bg-blue-400 text-white py-2 px-3 rounded-lg" (click)="search()">Search</button>
           </div>
           
       </div>

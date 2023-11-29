@@ -1,5 +1,5 @@
 <div class="flex justify-center my-16" id="app">
-  <div class="flex-col justify-center items-center w-[50%]">
+  <div class="flex-col justify-center items-center w-full">
 
   <h1 class="text-center font-semibold font-serif my-4 md:text-4xl sm:text-3xl lg:text-5xl text-2xl">Find Repositories</h1>
   <div *ngIf="showSearch">
@@ -20,7 +20,7 @@
   <div *ngIf="showRepositories">
       
 
-      <div class="grid grid-cols-2 gap-4 mx-2 my-4">
+      <div class="grid grid-cols-2 gap-4 lg:mx-2 my-4">
       <div *ngFor="let repo of repos">
           <app-repository [repo]="repo" [user]="user" [isLoading]="isLoading"></app-repository>
       </div>

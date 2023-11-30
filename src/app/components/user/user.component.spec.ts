@@ -25,10 +25,10 @@ describe('UserComponent', () => {
 
   const mockActivatedRoute = {
     params: of({ userName: 'testUser' }),
-    queryParams: of({ page: 1, per_page: 12 }),
+    queryParams: of({ page: 1, per_page: 10 }),
     snapshot: {
       paramMap: convertToParamMap({ userName: 'testUser' }),
-      queryParamMap: convertToParamMap({ page: 1, per_page: 12 })
+      queryParamMap: convertToParamMap({ page: 1, per_page: 10 })
     }
   };
 
@@ -61,7 +61,7 @@ describe('UserComponent', () => {
   });
 
   it('should fetch repositories on init', () => {
-    expect(mockUserRepoService.getRepositoriesOfTheUser).toHaveBeenCalledWith('testUser', 1, 12);
+    expect(mockUserRepoService.getRepositoriesOfTheUser).toHaveBeenCalledWith('testUser', 1, 10);
     expect(component.repos).toBeDefined();
   });
 

@@ -18,7 +18,7 @@ export class UserComponent implements OnInit {
   userName!: string;
   repos!: Repo[] | [];
   page: number = 1;
-  perPage: number = 12;
+  perPage: number = 10;
   totalCount!: number;
   totalPages: number = 1;
   currentPageArray: number[] = [];

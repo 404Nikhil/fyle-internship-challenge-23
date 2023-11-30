@@ -1,15 +1,14 @@
-<div class="user-container-main" *ngIf="user">
-  <div class="ml-[80px] flex justify-normal item z-10 mt-[10px]">
+<div class="flex justify-center flex-col items-center h-[30%] mt-10" *ngIf="user">
+  <div class="ml-[80px] flex space-y-4 flex-col justify-normal item z-10 mt-[10px]">
     <img [src]="user.avatar_url" alt="image not present" class="h-[200px] w-[200px] bg-black rounded-full p-4">
-    <div class="ml-[30px]">
-      <p id="user-name">{{user.name | truncateText}}</p>
-      <p id="user-description">{{user.bio | truncateText}}</p>
-      <p id="user-location" *ngIf="user.location"><img id="user-location-icon" loading="lazy" src="assets/images/location.png">{{user.location}}</p>
-      <p id="user-twitter" *ngIf="user.twitter_username">Twitter: {{user.twitter_username}}</p>
+    <div class="ml-[30px] flex-col">
+      <p class="text-[25px] text-center font-medium">{{user.name | truncateText}}</p>
+      <p class="mt-2 text-center text-[14px]">{{user.bio | truncateText}}</p>
+      <p class="mt-[6px] text-center text-[14px]" *ngIf="user.twitter_username">Twitter: {{user.twitter_username}}</p>
     </div>
   </div>
-  <p id="user-github"><img id="copy-icon" src="assets/images/copy.png" loading="lazy" alt="">{{user.html_url}}</p>
-  <div id="change-per-page">
+  <p class="ml-[80px] flex items-center text-[14px]"><img id="copy-icon" src="assets/images/copy.png" loading="lazy" alt="">{{user.html_url}}</p>
+  <div class="fixed top-3 right-48 p-2 rounded-md text-base font-medium cursor-pointer bg-white z-[999]">
     <label for="reposPerPage">Repos per page:</label>
     <select id="reposPerPage" [(ngModel)]="perPage" (change)="changePerPage()">
       <option value="10">10</option>
@@ -24,11 +23,10 @@
       <option value="100">100</option>
     </select>
   </div>
-  <div id="go-back" (click)="goBack()">Home Page</div>
+  <div class="fixed top-3 right-[20px] p-2 rounded-md text-base font-medium cursor-pointer bg-white z-[999]" (click)="goBack()">Home Page</div>
 </div>
-<div class="repo-container">
+<div class="bg-white flex just flex-wrap flex-[33.33%] mt-6 pl-4 pr-4">
   <ng-container *ngIf="loading; else reposContent">
-    <!-- Skeleton loader template -->
       <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
       <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
       <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
@@ -41,21 +39,20 @@
       <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
   </ng-container>
   <ng-template #reposContent>
-    <!-- Actual repo content -->
-    <div class="repo" *ngFor="let repo of repos">
-      <p id="repo-name">{{repo.name | truncateText}}</p>
-      <a id="repo-link" [href]="repo.html_url" target="_blank">{{repo.html_url}}</a>
+    <div class="repo justify-center " *ngFor="let repo of repos">
+      <p class="text-green-600 text-2xl font-medium">{{repo.name | truncateText}}</p>
+      <a class="text-blue-400 text-base cursor-pointer no-underline" [href]="repo.html_url" target="_blank">{{repo.html_url}}</a>
       <ng-container *ngIf="repo.description; else noDescription">
-        <p id="repo-description">{{repo.description | truncateText}}</p>
+        <p class="font-medium mt-2 text-[12px]">{{repo.description | truncateText}}</p>
       </ng-container>
       <ng-template #noDescription>
-        <p id="repo-description">No description available.</p>
+        <p class="font-medium mt-2 text-[12px]">No description available.</p>
       </ng-template>
       <div class="repo-languages-container">
-        <div class="repo-language" *ngFor="let lang of repo.languages">{{lang}}</div>
+        <div class="repo-language bg-green-600"  *ngFor="let lang of repo.languages">{{lang}}</div>
       </div>
       <div class="repo-languages-container" #elseBlock *ngIf="!repo.languages">
-        <div class="repo-language">{{repo.language}}</div>
+        <div class="repo-language bg-green-600">{{repo.language}}</div>
       </div>
 
     </div>

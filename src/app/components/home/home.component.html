@@ -1,5 +1,5 @@
 <div class=" flex justify-center items-center h-screen lg:text-2xl font-medium text-xl">
-  <div class="background-image"></div>
+  <div class=" absolute top-0 left-0 w-full h-full bg-cover bg-no-repeat bg-center" style="background-image: url('../../../assets/images/background.jpg'); opacity: 0.9; filter: brightness(0.5); z-index: -1;"></div>
   <div class="flex-col space-y-4 text-center text-white lg:text-3xl">
     <h2 class="lg:text-4xl ">Search for GitHub Repositories</h2>
     <form (ngSubmit)="onSubmit()" class=" flex flex-col space-y-3 lg:px-4" [formGroup]="myForm">

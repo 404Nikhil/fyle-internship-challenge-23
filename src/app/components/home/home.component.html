@@ -1,0 +1,10 @@
+<div class="search-container">
+  <div class="background-image"></div>
+  <div class="search-box">
+    <h2 class="title">Search for GitHub username</h2>
+    <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+      <input name="key" type="text" placeholder="Enter a GitHub username" class="search-input" formControlName="key"/>
+      <button type="submit" class="search-button" [disabled]="!myForm.valid">Search</button>
+    </form>
+  </div>
+</div>

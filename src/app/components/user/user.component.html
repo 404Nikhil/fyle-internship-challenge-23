@@ -1,0 +1,95 @@
+<div class="user-container-main" *ngIf="user">
+  <div class="user-container">
+    <img [src]="user.avatar_url" alt="image not present" id="profile-image">
+    <div class="user-info">
+      <p id="user-name">{{user.name | truncateText}}</p>
+      <p id="user-description">{{user.bio | truncateText}}</p>
+      <p id="user-location" *ngIf="user.location"><img id="user-location-icon" loading="lazy" src="assets/images/location.png">{{user.location}}</p>
+      <p id="user-twitter" *ngIf="user.twitter_username">Twitter: {{user.twitter_username}}</p>
+    </div>
+  </div>
+  <p id="user-github"><img id="copy-icon" src="assets/images/copy.png" loading="lazy" alt="">{{user.html_url}}</p>
+  <div id="change-per-page">
+    <label for="reposPerPage">Repos per page:</label>
+    <select id="reposPerPage" [(ngModel)]="perPage" (change)="changePerPage()">
+      <option value="5">5</option>
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="30">30</option>
+      <option value="40">40</option>
+      <option value="50">50</option>
+      <option value="60">60</option>
+      <option value="70">70</option>
+      <option value="80">80</option>
+      <option value="90">90</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+  <div id="go-back" (click)="goBack()">change username</div>
+</div>
+<div class="repo-container">
+  <ng-container *ngIf="loading; else reposContent">
+    <!-- Skeleton loader template -->
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+      <img src="assets/loaders/skeleton-loader.gif" alt="Skeleton Loader" class="repo-skl">
+  </ng-container>
+  <ng-template #reposContent>
+    <!-- Actual repo content -->
+    <div class="repo" *ngFor="let repo of repos">
+      <p id="repo-name">{{repo.name | truncateText}}</p>
+      <a id="repo-link" [href]="repo.html_url" target="_blank">{{repo.html_url}}</a>
+      <ng-container *ngIf="repo.description; else noDescription">
+        <p id="repo-description">{{repo.description | truncateText}}</p>
+      </ng-container>
+      <ng-template #noDescription>
+        <p id="repo-description">No description available.</p>
+      </ng-template>
+      <div class="repo-languages-container">
+        <div class="repo-language" *ngFor="let lang of repo.languages">{{lang}}</div>
+      </div>
+      <div class="repo-languages-container" #elseBlock *ngIf="!repo.languages">
+        <div class="repo-language">{{repo.language}}</div>
+      </div>
+      <div class="repo-info">
+        <div class="repo-info-item">
+          <img src="assets/images/fork.png" alt="Fork Icon">
+          <span>{{repo.forks_count}}</span>
+        </div>
+        <div class="repo-info-item">
+          <img src="assets/images/created.png" alt="Calendar Icon">
+          <span>{{repo.created_at | date:'short'}}</span>
+        </div>
+        <div class="repo-info-item">
+          <img src="assets/images/star.png" alt="Star Icon">
+          <span>Stars: {{repo.stargazers_count}}</span>
+        </div>
+        <div class="repo-info-item">
+          <img src="assets/images/issue.png" alt="Issue Icon">
+          <span>Open Issues: {{repo.open_issues_count}}</span>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Pagination container with updated styling -->
+<div class="pagination-container">
+  <div class="page-numbers">
+    <span *ngFor="let p of currentPageArray; let i = index"
+      [ngClass]="{'current-page': i === page - 1, 'different-page': !(i === page - 1)}"
+      (click)="changePage(p)">
+      {{ p }}
+    </span>
+  </div>
+</div>
+

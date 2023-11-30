@@ -1,10 +1,10 @@
-<div class="search-container">
+<div class=" flex justify-center items-center h-screen lg:text-2xl font-medium text-xl">
   <div class="background-image"></div>
-  <div class="search-box">
-    <h2 class="title">Search for GitHub username</h2>
-    <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
-      <input name="key" type="text" placeholder="Enter a GitHub username" class="search-input" formControlName="key"/>
-      <button type="submit" class="search-button" [disabled]="!myForm.valid">Search</button>
+  <div class="flex-col space-y-4 text-center text-white lg:text-3xl">
+    <h2 class="lg:text-4xl ">Search for GitHub Repositories</h2>
+    <form (ngSubmit)="onSubmit()" class=" flex flex-col space-y-3 lg:px-4" [formGroup]="myForm">
+      <input name="key" type="text" placeholder="Enter the GitHub username" class="text-center" formControlName="key"/>
+      <button type="submit" class="bg-blue-300 rounded-2xl hover:bg-green-300 cursor-pointer text-center items-center" [disabled]="!myForm.valid">Search</button>
     </form>
   </div>
 </div>

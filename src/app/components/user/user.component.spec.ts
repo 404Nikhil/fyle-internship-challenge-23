@@ -1,12 +1,3 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute, convertToParamMap, Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { of } from 'rxjs';
-import { UserComponent } from './user.component';
-import { UserService } from 'src/app/core/services/user.service';
-import { UserRepositoryService } from 'src/app/core/services/user-repository.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-
 describe('UserComponent', () => {
   let component: UserComponent;
   let fixture: ComponentFixture<UserComponent>;
@@ -68,6 +59,21 @@ describe('UserComponent', () => {
   it('should navigate to home on goBack', () => {
     component.goBack();
     expect(mockRouter.navigate).toHaveBeenCalledWith(['']);
+  });
+
+
+  it('should reset page number to 1 on page size change', () => {
+    component.perPage = 20; 
+    component.changePerPage();
+    expect(component.page).toBe(1);
+  });
+
+  it('should set upper limit for page number based on total repos count', () => {
+    component.totalReposCount = 100;
+    component.perPage = 10;
+    component.changePerPage();
+    expect(component.totalPages).toBe(10); 
+    expect(component.page).toBe(1); 
   });
 
 });

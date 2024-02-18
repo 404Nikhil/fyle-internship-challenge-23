@@ -18,6 +18,10 @@ export class UserRepositoryService {
     return this.http.get<Repo[]>(url);
   }
 
+  getRepoTopics(owner: string, repo: string) {
+    return this.http.get<string[]>(`https://api.github.com/repos/${owner}/${repo}/topics`);
+  }
+
   getRepoLanguages(languagesUrl: string): Observable<any> {
     return this.http.get<any>(languagesUrl);
   }
